@@ -1,34 +1,50 @@
-<h2>Formulario de Peticiones</h2>
+@if (loggedUser.userType === 'admin') {
+<div class="peticiones">
+  <div id="peticionAdmin">
+<p>Aqui puedes comprobar si algun cliente ha subido una peticion...</p>
+<button class="btn btn-primary" type="button" (click)="verPeticiones()">ver peticiones</button>
+<br>
+<div *ngFor="let peti of peticion" class="mensaje">
+  <p><strong>Nombre:</strong></p> <p>{{peti.nombre}}</p>
+  <p><strong>Apellido:</strong></p> <p>{{peti.apellido}}</p>
+  <p><strong>Correo:</strong></p> <p>{{peti.correo}}</p>
+  <p><strong>Tipo de Consulta:</strong></p> <p>{{peti.tipoDeConsulta}}</p>
+  <p><strong>Mensaje:</strong></p> <p>{{peti.mensaje}}</p>
+</div>
+</div>
+</div>
 
-<form id="formularioPeticiones" (ngSubmit)="enviarDatos({nombre: nombre.value, apellido: apellido.value})">
-  <label for="nombre">Nombre:</label><br>
-  <input type="text" id="nombre" name="nombre" #nombre><br>
-  <label for="apellido">Apellido:</label><br>
-  <input type="text" id="apellido" name="apellido" #apellido><br>
-  <input type="submit" value="Enviar">
+} @else {
+<div class="peticiones">
+<div id="peticionCliente">
+
+<p>¿Quieres escribir alguna peticion o reclamacion?</p>
+<br>
+<h2>Formulario de Peticiones/Reclamaciones</h2>
+<form id="formularioPeticion">
+  <label>
+    Nombre:
+    <input type="text" id="nombre">
+  </label>
+  <label>
+    Apellido:
+    <input type="text" id="apellido">
+  </label>
+  <label>
+    Correo:
+    <input type="email" id="correo">
+  </label>
+  <label>
+    Tipo de Consulta:
+    <input type="text" id="tipoDeConsulta">
+  </label>
+  <label>
+    Mensaje:
+    <textarea id="mensaje"></textarea>
+  </label>
+  <button type="button" (click)="guardarPeticion()">Guardar</button>
 </form>
+</div>
+</div>
 
-<script>
-document.getElementById('formularioPeticiones').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  const nombre = document.getElementById('nombre').value;
-  const apellido = document.getElementById('apellido').value;
-
-  fetch('http://localhost:3001/formulario', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      nombre: nombre,
-      apellido: apellido,
-    }),
-  })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-});
-</script>
+}
