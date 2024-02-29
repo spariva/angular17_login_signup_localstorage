@@ -1,15 +1,15 @@
+@if (loggedUser.userType === 'admin') {
 
+<div id="pagina">
+    <div id="mostrar">
+    <button class="btn btn-primary" type="button" (click)="verClientes()">ver clientes</button>
 
-
-
-
-<button class="btn btn-primary" type="button" (click)="verClientes()">ver clientes</button>
-
-<ul>
-    @for (cliente of clientes; track cliente.id) {
+    <ul class="lista-clientes">
+        @for (cliente of clientes; track cliente.id) {
         <li>Nombre: {{cliente.nombre}} - Apellido: {{cliente.apellido}}</li>
-    }
-</ul>
-
-<app-consultas></app-consultas>
+        }
+    </ul>
+</div>
+</div>
+}
 <app-peticiones></app-peticiones>

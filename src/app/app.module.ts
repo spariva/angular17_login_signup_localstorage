@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { PeticionesComponent } from './pages/peticiones/peticiones.component';
 import { ConsultasComponent } from './pages/consultas/consultas.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,7 @@ import { ConsultasComponent } from './pages/consultas/consultas.component';
     LayoutComponent,
     DashboardComponent,
     ConsultasComponent,
-    PeticionesComponent
+    PeticionesComponent,
   ],
   imports: [
     BrowserModule,
