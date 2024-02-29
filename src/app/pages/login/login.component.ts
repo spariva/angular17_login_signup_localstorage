@@ -44,7 +44,7 @@ export class LoginComponent {
         localStorage.setItem('loggedUser', JSON.stringify(isUserPresent));
         console.log('isUserPresent: ' + isUserPresent);
         console.log(isUserPresent);
-        this.router.navigateByUrl('/consultas'); 
+        this.router.navigateByUrl('/dashboard'); 
       } else {
         alert("Credenciales incorrectas, o usuario inexistente.")
       }
